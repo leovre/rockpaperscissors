@@ -9,7 +9,8 @@
 <body>
     <script>
 
-        
+        let roundWin=0;
+        let roundLose=0;
         
         function getPlayerSelection() //get player choice
         { 
@@ -29,7 +30,7 @@
                     } else {
                         randNum = "Scissors";
                     }
-                    console.log("Computer chose " + randNum);
+                    
                     return randNum;
                     
 
@@ -38,32 +39,49 @@
         function checkWinner(randNum, answer) // validate winner: computer or player
         {       
             
-            let roundWin = 0;
 
-            if (answer === randNum){
-                console.log("Its a tie!")
-            }else if(
-            answer == "Rock" && randNum == "Paper" || 
-            answer == "Paper" && randNum == "Scissors" ||
+            console.log("Computer chose " + randNum)
+ 
+            if (answer == randNum){ //tie
+                console.log("Its a tie!") 
+            }else if( // win
+            answer == "Rock" && randNum == "Scissors" || 
+            answer == "Paper" && randNum == "Rock" ||
             answer == "Scissors" && randNum == "Paper" )
             {
-                console.log("You Win!!!")
-                roundWin++;
+                console.log("You Win!!! " +answer+ " beats " + randNum);
+                roundWin++; //keep scores
             }
-            else{
-                console.log("You Lose")
+            else{ //lose
+                console.log("You Lose " +randNum+ " beats " + answer);
+                roundLose++; //keep scores
             };
 
-            return roundWin;
+            
+            return roundWin, roundLose;
         }
 
-        checkWinner(getComputerSelection(), getPlayerSelection());
+        
 
-        function playRound()
+        function playGame()
         {
+            for(let i=0; i<5; i++){ //five rounds
+            checkWinner(getComputerSelection(), getPlayerSelection());
+            console.log("you have " +roundWin+ " point(s) ");
+            console.log("computer has " +roundLose+ " point(s) ");
+             }
 
+             if(roundWin>roundLose){
+                console.log("YOU WIN!!!")
+             }else{
+                console.log("you lose :((")
+             }
 
         }
+        
+
+        playGame(roundWin, roundLose);
+
 
 
 
