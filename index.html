@@ -9,12 +9,12 @@
 <body>
     <script>
 
-        let roundWin=0;
-        let roundLose=0;
+        let roundWin=0; //score if player wins
+        let roundLose=0; //score if computer wins
         
         function getPlayerSelection() //get player choice
         { 
-        let answer = prompt("Rock, Paper, Scissors?");
+        let answer = prompt("Rock, Paper, Scissors?").toLowerCase();
         console.log("You chose " + answer)
         return answer;
 
@@ -24,11 +24,11 @@
         {
                 let randNum = Math.floor(Math.random()*(3-1+1)+1);
                     if(randNum === 1){
-                        randNum = "Rock";
+                        randNum = "rock";
                     } else if (randNum === 2){
-                        randNum = "Paper";
+                        randNum = "paper";
                     } else {
-                        randNum = "Scissors";
+                        randNum = "scissors";
                     }
                     
                     return randNum;
@@ -45,9 +45,9 @@
             if (answer == randNum){ //tie
                 console.log("Its a tie!") 
             }else if( // win
-            answer == "Rock" && randNum == "Scissors" || 
-            answer == "Paper" && randNum == "Rock" ||
-            answer == "Scissors" && randNum == "Paper" )
+            answer == "rock" && randNum == "scissors" || 
+            answer == "paper" && randNum == "rock" ||
+            answer == "scissors" && randNum == "paper" )
             {
                 console.log("You Win!!! " +answer+ " beats " + randNum);
                 roundWin++; //keep scores
@@ -72,15 +72,19 @@
              }
 
              if(roundWin>roundLose){
-                console.log("YOU WIN!!!")
+                console.log("YOU WIN!!! " +roundWin+ " - " +roundLose);
+
+             }else if(roundWin==roundLose)
+             {
+                console.log("Its a Tie " +roundWin+ " - " +roundLose);
              }else{
-                console.log("you lose :((")
+                console.log("You Lose :(( " +roundWin+ " - " +roundLose);
              }
 
         }
         
 
-        playGame(roundWin, roundLose);
+        playGame(roundWin, roundLose); //play games 5 rounds
 
 
 
