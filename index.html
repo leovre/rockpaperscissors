@@ -8,28 +8,64 @@
 </head>
 <body>
     <script>
+
         
-        function getPlayerSelection(){
-        let answer = prompt('Rock, Paper, Scissors?');
+        
+        function getPlayerSelection() //get player choice
+        { 
+        let answer = prompt("Rock, Paper, Scissors?");
+        console.log("You chose " + answer)
         return answer;
 
-        };
-        function getComputerSelection(){
-
-                let randNum = Math.floor(Math.random()*(3-1+1)+1);
-                    if(randNum === 1){
-                        randNum= "rock";
-                    } else if (randNum === 2){
-                        randNum= "paper";
-                    } else{
-                        randNum="scissors";
-                    }
-
-                    
-                    console.log(randNum);
         }
 
-        getComputerSelection();
+        function getComputerSelection()// get computer choice 
+        {
+                let randNum = Math.floor(Math.random()*(3-1+1)+1);
+                    if(randNum === 1){
+                        randNum = "Rock";
+                    } else if (randNum === 2){
+                        randNum = "Paper";
+                    } else {
+                        randNum = "Scissors";
+                    }
+                    console.log("Computer chose " + randNum);
+                    return randNum;
+                    
+
+        }
+
+        function checkWinner(randNum, answer) // validate winner: computer or player
+        {       
+            
+            let roundWin = 0;
+
+            if (answer === randNum){
+                console.log("Its a tie!")
+            }else if(
+            answer == "Rock" && randNum == "Paper" || 
+            answer == "Paper" && randNum == "Scissors" ||
+            answer == "Scissors" && randNum == "Paper" )
+            {
+                console.log("You Win!!!")
+                roundWin++;
+            }
+            else{
+                console.log("You Lose")
+            };
+
+            return roundWin;
+        }
+
+        checkWinner(getComputerSelection(), getPlayerSelection());
+
+        function playRound()
+        {
+
+
+        }
+
+
 
 
         
